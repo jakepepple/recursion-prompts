@@ -125,11 +125,19 @@ var range = function(x, y) {
 var exponent = function(base, exp) {
   var count = arguments[2] || 1;
   var result = arguments[3] || base;
-  if(count === exp){
-    return result;
-  }
-  newResult = base * result;
-  return exponent(base, exp, count + 1, newResult);
+  var n = arguments[4] || exp;
+  if(exp === 0){
+  	return 1;
+  } 
+  if(exp > 0){
+	  if(count === exp){
+	    return result;
+	  }
+
+	  newResult = base * result;
+	  return exponent(base, exp, count + 1, newResult);
+  } 
+
 };
 //console.log(exponent(4, 4));
 
@@ -142,7 +150,7 @@ var powerOfTwo = function(n) {
     return true;
   } else if (n === 2){
     return true;
-  } else if (n <= 5 && n % 2) {
+  } else if (n % 5 === 0) {
     return false;
   } else {
      return powerOfTwo(n / 2);

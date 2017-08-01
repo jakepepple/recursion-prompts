@@ -93,12 +93,27 @@ var sumBelow = function(n) {
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
   var array = arguments[2] || [];
-  if(x === y - 1){
-    return array;
+    if(x === y){
+	  	return [];
+	}
+  if(x > y){
+	  if(x === y + 1){
+	    return array;
+	  }
+	  array.push(x - 1);
+	  x -= 1;
+	  return range(x, y, array);
+
+
+  } else {
+	  
+	  if(x === y - 1){
+	    return array;
+	  }
+	  array.push(x + 1);
+	  x += 1;
+	  return range(x, y, array);
   }
-  array.push(x + 1);
-  x += 1;
-  return range(x, y, array);
 };
 //console.log(range(3, 15));
 

@@ -529,6 +529,16 @@ var capitalizeFirst = function(array) {
 // };
 // nestedEvenSum(obj1); // 10
 var nestedEvenSum = function(obj) {
+	var sum = 0;
+	for(var key in obj){
+		if(obj[key] instanceof Object){
+			sum += nestedEvenSum(obj[key]);
+		} else if(obj[key] % 2 === 0){
+			sum += obj[key];
+		}
+		
+	}
+	return sum;
 };
 
 // 29. Flatten an array containing nested arrays.

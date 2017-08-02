@@ -289,6 +289,9 @@ var divide = function(x, y) {
 // http://www.cse.wustl.edu/~kjg/cse131/Notes/Recursion/recursion.html
 // https://www.khanacademy.org/computing/computer-science/cryptography/modarithmetic/a/the-euclidean-algorithm
 var gcd = function(x, y) {
+	if(x < 0 || y < 0){
+		return null;
+	}
   var guess = arguments[2] || Math.min(x, y)
   if(x % guess === 0 && y % guess === 0){
     return guess;
@@ -302,16 +305,19 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
-  var trueFalse = arguments[2] || true;
+  var trueFalse = arguments[2] || 'true';
   var i = arguments[3] || 0;
-  if(trueFalse === false || str1.length !== str2.length){
-    return false;
-  } else if(i === str1.length && trueFalse === true){
-    return true;
-  } else if (i === str1.length && trueFalse === false){
-    return false;
+  if(i === Math.max(str1.length, str2.length)){
+  	if(trueFalse === 'false'){
+  		return false;
+  	} else {
+  		return true;
+  	}
   }
-  trueFalse = str1.charAt(i) === str2.charAt(i);
+  if(str1.charAt(i) !== str2.charAt(i)){
+  	trueFalse = 'false';
+  };
+
   return compareStr(str1, str2, trueFalse, ++i);
 };
 //console.log(compareStr('race', 'race'));

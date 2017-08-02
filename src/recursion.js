@@ -180,7 +180,7 @@ var palindrome = function(string) {
   } else if (i === string.length && array.join('') !== string){
     return false;
   }
-   	
+
   array.unshift(string.charAt(i));
   
   return palindrome(string, array, ++i);
@@ -193,12 +193,25 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
-  var remainder = arguments[2] || x;
-  if(remainder < y){
-    return remainder;
-  }
-  remainder -= y;
-  return modulo(x, y, remainder);
+	var positive = arguments[2] || 'true';
+	if(x < 0){
+		x = -x;
+		positive = arguments[2] || 'false';
+	}
+	if(y < 0){
+		y = -y;
+		
+	}
+	if(y === 0){
+		return NaN;
+	}
+	if(x < y){
+		if(positive === 'false'){
+			return -x;
+		}
+		return x; 
+	}
+	return modulo(x-y, y, positive);
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator  or

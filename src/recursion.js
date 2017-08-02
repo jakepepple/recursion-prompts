@@ -252,13 +252,35 @@ var multiply = function(x, y) {
 // 13. Write a function that divides two numbers without using the / operator  or
 // JavaScript's Math object.
 var divide = function(x, y) {
-  var count = arguments[2] || 1;
-  var current = arguments[3] || y;
-  if(current === x){
-    return count;
+  var result = arguments[2] || y;
+  var negative = arguments[3] || 'false';
+  var count = arguments[4] || 1;
+  
+  if(x === 0 && y === 0){
+  	return NaN;
+  } else if (x === 0){
+  	return 0;
   }
-  current += y;
-  return divide(x, y, ++count, current);
+  if(x < 0 && y < 0){
+  	negative = arguments[3] || 'both';
+  	x = -x;
+  	y = -y;
+  } else if(x < 0){
+  	x = -x;
+  	negative = arguments[3] || 'true';
+  } else if (y < 0){
+  	y = -y;
+  	negative = arguments[3] || 'true';
+  }
+  if(y > x){
+  	return 0;
+  }
+  if((result + y) > x){
+  	return count;
+  }
+  result += y;
+  count++;
+  return divide(x, y, result, negative, count);
 };
 
 // 14. Find the greatest common divisor (gcd) of two positive numbers.  The GCD of two

@@ -452,6 +452,9 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
 var fibonacci = function(n) {
+	if(n === 0 || n < 0){
+		return null;
+	}
   var array = arguments[1] || [0, 1];
   var count = arguments[2] || 1;
   var i = arguments[3] || 2;

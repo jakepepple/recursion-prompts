@@ -217,13 +217,35 @@ var modulo = function(x, y) {
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
 var multiply = function(x, y) {
-  var count = arguments[2] || 1;
-  var result = arguments[3] || x;
-  if(count === y){
-    return result;
+  var result = arguments[2] || x;
+  var negative = arguments[3] || 'false';
+  if(x < 0 && y < 0){
+  	negative = arguments[3] || 'both';
+  	x = -x;
+  	y = -y;
+  } else if(x < 0){
+  	x = -x;
+  	negative = arguments[3] || 'true';
+  } else if (y < 0){
+  	y = -y;
+  	negative = arguments[3] || 'true';
   }
-  newResult = result + x;
-  return multiply(x, y, ++count, newResult);
+  if(negative === 'true'){
+  	if(y === 0){
+  		return -result;
+  	}
+  } else if (negative === 'false'){
+  	if(y === 1){
+  		return result;
+  	}
+  } else if (negative === 'both'){
+  	if(y === 0){
+  		return result;
+  	}
+  }
+  
+  result += x;
+  return multiply(x, --y, result, negative);
 };
 //console.log(multiply(5, 3));
 

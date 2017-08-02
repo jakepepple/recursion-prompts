@@ -29,7 +29,7 @@ var sum = function(array) {
   result = array[i] + count;
   return sum(array, result, ++i);
 };
-console.log(sum([1, 2, 3, 4, 5, 6]));
+//console.log(sum([1, 2, 3, 4, 5, 6]));
 
 // 3. Sum all numbers in an array containing nested arrays.
 // Example: arraySum([1,[2,3],[[4]],5]); // 15
@@ -126,17 +126,15 @@ var exponent = function(base, exp) {
   var count = arguments[2] || 1;
   var result = arguments[3] || base;
   var n = arguments[4] || exp;
-  if(exp === 0){
-  	return 1;
-  } 
-  if(exp > 0){
-	  if(count === exp){
-	    return result;
-	  }
 
-	  newResult = base * result;
-	  return exponent(base, exp, count + 1, newResult);
-  } 
+  if(exp < 0){
+  	return exponent(base, exp+1)/base;
+  } else if (exp === 0) {
+  	return 1;
+  } else {
+  	base *= exponent(base, exp - 1);
+  	return base;
+  }
 
 };
 //console.log(exponent(4, 4));
@@ -180,10 +178,12 @@ var palindrome = function(string) {
   } else if (i === string.length && array.join('') !== string){
     return false;
   }
-  array.unshift(string.charAt(i));
+  if(string.charAt(i) !== ' '){
+  array.unshift(string.charAt(i).toLowerCase());
+  }
   return palindrome(string, array, ++i);
 };
-//console.log(palindrome('racecar'));
+console.log(palindrome('Race car'));
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
@@ -320,9 +320,9 @@ var rMap = function(array, callback) {
   newArray.push(callback(array[i]));
   return rMap(array, callback, newArray, ++i);
 };
-console.log(rMap([1, 2, 3], function(x){
-  return x * 2;
-}));
+// console.log(rMap([1, 2, 3], function(x){
+//   return x * 2;
+// }));
 
 // 21. Write a function that counts the number of times a key occurs in an object.
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
@@ -359,7 +359,7 @@ var fibonacci = function(n) {
   array[i]= array[i - 1] + array[i - 2];
   return fibonacci(n, array, array[i], ++i);
 };
-console.log(fibonacci(5));
+//console.log(fibonacci(5));
 
 // 25. Return the Fibonacci number located at index n of the Fibonacci sequence.
 // [0,1,1,2,3,5,8,13,21]

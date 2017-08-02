@@ -452,6 +452,7 @@ var replaceKeysInObj = function(obj, key, newKey) {
 // fibonacci(5);  // [0, 1, 1, 2, 3, 5]
 // Note:  The 0 is not counted.
 var fibonacci = function(n) {
+
 	if(n === 0 || n < 0){
 		return null;
 	}
@@ -473,6 +474,13 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  if(n < 0){
+  	return null;
+  }
+  if(n === 0){
+  	return 0;
+  }
+
   if(n === 1){
     return 1;
   } else {

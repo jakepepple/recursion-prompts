@@ -173,17 +173,19 @@ var reverse = function(string) {
 var palindrome = function(string) {
   var array = arguments[1] || [];
   var i = arguments[2] || 0;
+  var string = string.replace(" ", "").toLowerCase();
+
   if(i === string.length && array.join('') === string){
     return true;
   } else if (i === string.length && array.join('') !== string){
     return false;
   }
-  if(string.charAt(i) !== ' '){
-  array.unshift(string.charAt(i).toLowerCase());
-  }
+   	
+  array.unshift(string.charAt(i));
+  
   return palindrome(string, array, ++i);
 };
-console.log(palindrome('Race car'));
+//console.log(palindrome('Race car'));
 
 // 11. Write a function that returns the remainder of x divided by y without using the
 // modulo (%) operator.
